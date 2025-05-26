@@ -1,0 +1,10 @@
+{
+	"source_path": "./",
+	"executable_path": "./a.out",
+	"input_path": "./InputData",
+	"output_path": "./out",
+	"ref_path": "./RefData",
+	"forward_path": "./forward",
+	"run_valgrind": false,
+	"tutorial": false
+}

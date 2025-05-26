@@ -4,10 +4,10 @@
 
 Acest program implementează Game of Life cu câteva funcții extra. Ai o grilă cu celule care pot fi vii (X) sau moarte (+), și ele evoluează după niște reguli simple. Am adăugat 4 moduri diferite:
 
-1. **Modul 1**: Simularea normală - vezi cum evoluează grila pas cu pas
-2. **Modul 2**: Ca modul 1, dar îți spune exact care celule s-au schimbat la fiecare pas
-3. **Modul 3**: Compară evoluția normală cu o regulă alternativă folosind un arbore binar
-4. **Modul 4**: Găsește cel mai lung "drum" prin celulele vii conectate (lanț hamiltonian)
+1. **Task 1**: Simularea normală - vezi cum evoluează grila pas cu pas
+2. **Task 2**: Ca modul 1, dar îți spune exact care celule s-au schimbat la fiecare pas
+3. **Task 3**: Compară evoluția normală cu o regulă alternativă folosind un arbore binar
+4. **Task 4**: Găsește cel mai lung "drum" prin celulele vii conectate (lanț hamiltonian)
 
 Pentru mai multe detalii despre regulile Game of Life, consultați [acest link](https://site-pa.netlify.app/proiecte/game_of_life/).
 
@@ -99,17 +99,17 @@ typedef struct {
 3. **DFS** - pentru găsirea componentelor conexe
 4. **Arbore binar** - pentru compararea celor două seturi de reguli
 
-### Modurile în detaliu
+### Task-urile în detaliu
 
-**Modul 1:** Simulare simplă. Aplică regulile Game of Life de câte ori îi spui și salvează toate stările.
+**Task 1:** Simulare simplă. Aplică regulile Game of Life de câte ori îi spui și salvează toate stările.
 
-**Modul 2:** Ca modul 1, plus că îți spune exact care celule s-au schimbat la fiecare pas. Opțional poate să "desfacă" toate modificările pentru a reveni la starea inițială.
+**Task 2:** Ca modul 1, plus că îți spune exact care celule s-au schimbat la fiecare pas. Opțional poate să "desfacă" toate modificările pentru a reveni la starea inițială.
 
-**Modul 3:** Construiește un arbore unde fiecare nod are două "viitori posibile":
+**Task 3:** Construiește un arbore unde fiecare nod are două "viitori posibile":
 - Stânga: cu regula alternativă
 - Dreapta: cu regulile normale
 
-**Modul 4:** Pentru fiecare stare din arborele de la modul 3, încearcă să găsească cel mai lung "drum" prin celulele vii care sunt conectate.
+**Task 4:** Pentru fiecare stare din arborele de la modul 3, încearcă să găsească cel mai lung "drum" prin celulele vii care sunt conectate.
 
 ## Note importante
 

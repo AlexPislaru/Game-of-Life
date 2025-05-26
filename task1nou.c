@@ -237,10 +237,7 @@ void scriere_mat_initiala(char **a,int n,int m, const char *iesire)
     {
         fprintf (fisier, "%s\n" , a[i]);
     }
-    if(fisier == NULL) {
-        perror("Eroare la deschiderea fisierului");
-        exit(EXIT_FAILURE);
-    }
+   
     fprintf(fisier, "\n");
     fflush(fisier); 
     fclose(fisier);
@@ -351,7 +348,7 @@ int vecini(celula a,celula b)
     return(dl<=1&&dc<=1 && !(dl ==0 && dc ==0));
 
 }
-int ** construire_graf(celula *celule,int nr_celule)
+int ** construire_graf(const celula *celule,int nr_celule)
 {
     int **graf = (int**)malloc(nr_celule *sizeof(int*));
     for(int i=0;i<nr_celule;i++)
@@ -468,7 +465,7 @@ LantHam gasestelantul(char **mat,int n,int m){
            for (int start =0;start<nr_celule;start++){
             if(comp[start]!=c) continue;
 
-            int *viz=(int*)calloc(nr_celule,sizeof(int));
+            
             for(int k=0; k<nr_celule; k++){
                  viz[k] = 0;
                 }
@@ -549,6 +546,37 @@ void parcurgere_hamiltonian(Nod *nod,int n,int m,const char *output){
     parcurgere_hamiltonian(nod->st,n,m,output);
     parcurgere_hamiltonian(nod->dr,n,m,output);
 }
+
+//Bonus
+void operatie_inversa(ca **stiva, const int *dim_stiva,int g, char **mat_finala,int n,int m,const char *output)
+{
+    char **mat_curenta = cop_mat(mat_finala,n ,m);
+    for(int j=g-1;j>=0;j--){
+        for(int i=0;i<dim_stiva[j];i++){
+            int linie=stiva[j][i].linie;
+            int coloana=stiva[j][i].coloana;
+
+            if(mat_curenta[linie][coloana]=='X'){
+                mat_curenta[linie][coloana]='+';
+            } else {
+                mat_curenta[linie][coloana]='X';
+            }
+        }
+    }
+
+    FILE *f =fopen(output,"w");
+    if(!f){
+        printf("Eroare\n");
+        exit(1);
+    }
+    for(int i=0;i<n;i++){
+        fprintf(f,"%s\n",mat_curenta[i]);
+    }
+    fprintf(f,"\n");
+    fclose(f);
+
+    free_mem(&mat_curenta,n);
+}
 int main( int argc, char *argv[])
 {
     int n,m,g,t;
@@ -578,11 +606,15 @@ int main( int argc, char *argv[])
     }
     ca **stiva=(ca **)malloc(g*sizeof(ca *));
     int *dim_stiva=(int *)calloc(g,sizeof(int));
+    char **mat_initiala = cop_mat(a,n,m);
     for (int i=0;i<g;i++)
     {   dim_stiva[i]=act_mat_nou(a,n,m,&stiva[i]);
        
     }
     afis_stiva(stiva,dim_stiva,g,argv[3]);
+    if (argc >=5){
+        operatie_inversa(stiva,dim_stiva,g,a,n,m,argv[4]);
+    }
     for(int i=0;i<g;i++)
     {
         free(stiva[i]);
@@ -590,6 +622,7 @@ int main( int argc, char *argv[])
     }
     free(stiva);
     free(dim_stiva);
+    free_mem(&mat_initiala, n);
     free_mem(&a, n);
    }
   

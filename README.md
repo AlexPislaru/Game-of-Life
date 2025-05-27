@@ -5,7 +5,7 @@
 Acest program implementează Game of Life cu câteva funcții extra. Ai o grilă cu celule care pot fi vii (X) sau moarte (+), și ele evoluează după niște reguli simple. Am adăugat 4 moduri diferite:
 
 1. **Task 1**: Simularea normală - vezi cum evoluează grila pas cu pas
-2. **Task 2**: Ca modul 1, dar îți spune exact care celule s-au schimbat la fiecare pas
+2. **Task 2**: Ca taskul 1, dar îți spune exact care celule s-au schimbat la fiecare pas
 3. **Task 3**: Compară evoluția normală cu o regulă alternativă folosind un arbore binar
 4. **Task 4**: Găsește cel mai lung "drum" prin celulele vii conectate (lanț hamiltonian)
 
